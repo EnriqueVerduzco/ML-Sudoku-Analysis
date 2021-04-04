@@ -1,8 +1,8 @@
-import copy
-import random
+import copy, random, time
 from simanneal import Annealer
-from sudoku import *
-import time
+from sudoku import sudoLst
+import numpy as np
+import pandas as pd
 
 def print_sudoku(state):
     border = "------+-------+------"
@@ -63,20 +63,25 @@ class Sudoku_Sq(Annealer):
         column_score = lambda n: -len(set(self.state[coord(i, n)] for i in range(9)))
         row_score = lambda n: -len(set(self.state[coord(n, i)] for i in range(9)))
         score = sum(column_score(n)+row_score(n) for n in range(9))
+        #quit searching if score hits -162, solution was found
         if score == -162:
-            self.user_exit = True # early quit, we found a solution
+            self.user_exit = True
         return score
 
 def main():
     #list to view sum of fully solved sudoku puzzles
     completedPuzzles = []
-    #timer to view total time for ALL puzzles
-    start = time.perf_counter()
-    for count, sudopuzzle in enumerate(sudoLst):
+    #list to view times
+    completedTimes = []
+    total_time = 0
+
+    #start for loop at 1
+    for count, sudopuzzle in enumerate(sudoLst,1):
+        start = time.perf_counter()
         #create array of our current sudoku puzzle from "sudoku.py"
         currentPuzzle = np.array([item for sublist in sudopuzzle for item in sublist])
 
-        #starts Simmulated Annealing process using current Sudoku Puzzle
+        #initialized Sudoku_sq class as sudoku
         sudoku = Sudoku_Sq(currentPuzzle)
 
         #Sim Anneal code here
@@ -100,7 +105,7 @@ def main():
         #Tmax = Initial Temperature 
         #Tmin = Low Temperature
         sudoku.Tmax = .5
-        sudoku.Tmin = .05
+        sudoku.Tmin = .5
         sudoku.steps = 10000
         sudoku.updates = 100
 
@@ -114,17 +119,26 @@ def main():
         print_sudoku(state)
 
         #prints out Energy of puzzle, -162 == puzzle solution found
-        print("E=%f (expect -162)" % e, '\n')
+        print("E=%f (-162 means a solution was found)" % e, '\n')
         #add completed puzzles to list, for comparision to view sum of total completed puzzles
         if e == -162:
+            #timer to view time to complete 1 puzzle
+            end = time.perf_counter()
+            final_time = end - start
+            total_time += final_time
             completedPuzzles.append(count)
+            completedTimes.append(final_time)
 
-    #timer to view total time for 30 puzzles
-    end = time.perf_counter()
-    final_time = end - start
-
-    print('Total amount of completed Puzzles:', len(completedPuzzles), end="\n")
+    print('Total completed Puzzles out of 30:', len(completedPuzzles), end="\n")
     print('Puzzles that were completed:', completedPuzzles, end='\n')
-    print("Time in Seconds: %f" %final_time)
+    print('Times of Puzzles that were completed (Seconds):', completedTimes, end='\n')
+    print("Total Time (Seconds): %f" %total_time)
+
+    #save completed puzzles and times to a CSV file
+    df = pd.DataFrame(list(zip(completedPuzzles,completedTimes)), columns =['Puzzles', 'Times'])
+    #save to csv with no index values, just columns of puzzles + times
+    df.to_csv('SudokuPuzzles.csv', index=False)
+
+
 if __name__ == "__main__":
     main()
