@@ -181,34 +181,40 @@ def fitnesscalc(population, generation=0):
 
 def board_print(sudoku_board):
 	iteration = 0
+	print("\n")
 	for i in sudoku_board:
-		print(i[0], i[1], i[2], "", i[3], i[4], i[5], "|", i[6], i[7], i[8])
+		
+		print(" ", i[0]," ", i[1]," ", i[2], " Ξ ", i[3]," ", i[4]," ", i[5], " Ξ ", i[6]," ", i[7]," ", i[8])
 		iteration += 1
 		if (iteration == 3 or iteration == 6):
-			print("------------------- -")
-	print("")
+			print("><><><><><><><><><><><><><><><><><><><><><")
+	print("\n")
 	
 
 if __name__ == "__main__":
 		sudoku_board = ReadFromFile(sys.argv[1])
 		print("Input Sudoku Board:")
 		board_print(sudoku_board)
-		populn_num=200
-		iteration = 0
-		population = popln_initialize(sudoku_board, populn_num)
-		fitnessPop = fitnesscalc(population)
-		while (iteration < 1000):
-			iteration += 1
-			poplnparents = poplnselecn(population, fitnessPop, populn_num)
-			poplnchild = crossover(poplnparents, populn_num)
-			population = mutatePop(poplnchild, sudoku_board)
-			lastFitness = sorted(fitnessPop)[-1]
-			fitnessPop = fitnesscalc(population, iteration)
-			if (lastFitness == sorted(fitnessPop)[-1]):
-				Locmin_stcount += 1
-				if Locmin_stcount == 100:
-					print("Local Minima detected")	
-					break
-			else:
-				Locmin_stcount = 0
-			print("Gen:", iteration, "& Max fit %.1f" % sorted(fitnessPop)[-1])
+		iter = 0
+		while iter == 0:
+			populn_num=200
+			iteration = 0
+			population = popln_initialize(sudoku_board, populn_num)
+			fitnessPop = fitnesscalc(population)
+			while (iteration < 1000):
+				iteration += 1
+				poplnparents = poplnselecn(population, fitnessPop, populn_num)
+				poplnchild = crossover(poplnparents, populn_num)
+				population = mutatePop(poplnchild, sudoku_board)
+				lastFitness = sorted(fitnessPop)[-1]
+				fitnessPop = fitnesscalc(population, iteration)
+				if (lastFitness == sorted(fitnessPop)[-1]):
+					Locmin_stcount += 1
+					if Locmin_stcount == 100:
+						print("Local Minima detected")	
+						iter=1
+						break
+				else:
+					Locmin_stcount = 0
+				print("Gen:", iteration, "& Max fit %.1f" % sorted(fitnessPop)[-1])
+			
