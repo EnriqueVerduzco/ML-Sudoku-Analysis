@@ -137,7 +137,7 @@ def main():
     #save completed puzzles and times to a CSV file
     df = pd.DataFrame(list(zip(completedPuzzles,completedTimes)), columns =['Puzzles', 'Times'])
     #save to csv with no index values, just columns of puzzles + times
-    df.to_csv('SudokuPuzzles.csv', index=False)
+    df.to_csv('./Sim_Anneal_CSVs/SudokuPuzzles.csv', index=False)
 
 
 if __name__ == "__main__":
