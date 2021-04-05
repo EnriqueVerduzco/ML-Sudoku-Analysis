@@ -73,71 +73,81 @@ def main():
     completedPuzzles = []
     #list to view times
     completedTimes = []
-    total_time = 0
+    
+    #total_time = 0
+    for i in range(100):
+        for count, sudopuzzle in enumerate(sudoLst,1):
+            start = time.perf_counter()
+            #create array of our current sudoku puzzle from "sudoku.py"
+            currentPuzzle = np.array([item for sublist in sudopuzzle for item in sublist])
 
-    #start for loop at 1
-    for count, sudopuzzle in enumerate(sudoLst,1):
-        start = time.perf_counter()
-        #create array of our current sudoku puzzle from "sudoku.py"
-        currentPuzzle = np.array([item for sublist in sudopuzzle for item in sublist])
+            #initialized Sudoku_sq class as sudoku
+            sudoku = Sudoku_Sq(currentPuzzle)
 
-        #initialized Sudoku_sq class as sudoku
-        sudoku = Sudoku_Sq(currentPuzzle)
+            #Sim Anneal code here
+            # 3 different copy_strategy methods: deepcopy, method, slice
+            #https://github.com/perrygeo/simanneal/blob/master/simanneal/anneal.py
+            sudoku.copy_strategy = "method"
 
-        #Sim Anneal code here
-        # 3 different copy_strategy methods: deepcopy, method, slice
-        #https://github.com/perrygeo/simanneal/blob/master/simanneal/anneal.py
-        sudoku.copy_strategy = "method"
+            #print out sudoku puzzle with initial random values
+            print('---------------------------\n')
+            print('Initial Sudoku Puzzle\n')
+            print_sudoku(sudoku.state)
 
-        #print out sudoku puzzle with initial random values
-        print('---------------------------\n')
-        print('Initial Sudoku Puzzle\n')
-        print_sudoku(sudoku.state)
+            #Uses automatic selection of temperature to minimize energy
+            # auto_schedule = sudoku.auto(minutes=1)
+            # print(auto_schedule)
+            # sudoku.set_schedule(auto_schedule)
+            # print('Auto Schedule for Sim Annealing Done')
 
-        #Uses automatic selection of temperature to minimize energy
-        # auto_schedule = sudoku.auto(minutes=1)
-        # print(auto_schedule)
-        # sudoku.set_schedule(auto_schedule)
-        # print('Auto Schedule for Sim Annealing Done')
+            #Set Sim Annealing schedule manually here
+            #Annealer parameters can be seen in "anneal.py" from github link above
+            #Tmax = Initial Temperature 
+            #Tmin = Low Temperature
+            sudoku.Tmax = .5
+            sudoku.Tmin = .05
+            sudoku.steps = 10000
+            sudoku.updates = 100
 
-        #Set Sim Annealing schedule manually here
-        #Annealer parameters can be seen in "anneal.py" from github link above
-        #Tmax = Initial Temperature 
-        #Tmin = Low Temperature
-        sudoku.Tmax = .5
-        sudoku.Tmin = .5
-        sudoku.steps = 10000
-        sudoku.updates = 100
+            print('\n')
+            print('Starting Anneal Process:')
+            print('\n')
+            #returns finished sudoku puzzle
+            state, e = sudoku.anneal()
+            print('\n')
+            #prints out finished sudoku puzzle, if solution was found
+            print_sudoku(state)
 
-        print('\n')
-        print('Starting Anneal Process:')
-        print('\n')
-        #returns finished sudoku puzzle
-        state, e = sudoku.anneal()
-        print('\n')
-        #prints out finished sudoku puzzle, if solution was found
-        print_sudoku(state)
+            #prints out Energy of puzzle, -162 == puzzle solution found
+            print("E=%f (-162 means a solution was found)" % e, '\n')
+            #add completed puzzles to list, for comparision to view sum of total completed puzzles
+            if e == -162:
+                #timer to view time to complete 1 puzzle
+                end = time.perf_counter()
+                final_time = end - start
+                #total_time += final_time
+                completedPuzzles.append(count)
+                completedTimes.append(final_time)
 
-        #prints out Energy of puzzle, -162 == puzzle solution found
-        print("E=%f (-162 means a solution was found)" % e, '\n')
-        #add completed puzzles to list, for comparision to view sum of total completed puzzles
-        if e == -162:
-            #timer to view time to complete 1 puzzle
-            end = time.perf_counter()
-            final_time = end - start
-            total_time += final_time
-            completedPuzzles.append(count)
-            completedTimes.append(final_time)
-
-    print('Total completed Puzzles out of 30:', len(completedPuzzles), end="\n")
-    print('Puzzles that were completed:', completedPuzzles, end='\n')
-    print('Times of Puzzles that were completed (Seconds):', completedTimes, end='\n')
-    print("Total Time (Seconds): %f" %total_time)
+    #print('Total completed Puzzles out of 30:', len(completedPuzzles), end="\n")
+    #print('Puzzles that were completed:', completedPuzzles, end='\n')
+    #print('Times of Puzzles that were completed (Seconds):', completedTimes, end='\n')
+    #print("Total Time (Seconds): %f" %total_time)
 
     #save completed puzzles and times to a CSV file
     df = pd.DataFrame(list(zip(completedPuzzles,completedTimes)), columns =['Puzzles', 'Times'])
+    
+    #create new dataframe with count of how many times each puzzle was solved
+    duplicates = df.groupby(df.Puzzles.tolist(), as_index=False).size()
+
+    #create new dataframe with average time to solve each puzzle
+    df1 = df.groupby('Puzzles', as_index=False).mean()
+    
+    #combine count of solutions found per puzzle to dataframe for saving
+    df1['Count of Solutions Found'] =duplicates['size']
+
     #save to csv with no index values, just columns of puzzles + times
-    df.to_csv('./Sim_Anneal_CSVs/SudokuPuzzles.csv', index=False)
+    df1.to_csv('./Sim_Anneal_CSVs/SudokuPuzzles.csv', index=False)
 
 
 if __name__ == "__main__":
