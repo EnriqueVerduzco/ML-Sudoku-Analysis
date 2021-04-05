@@ -1,5 +1,6 @@
 import sys
 import random
+import time
 Locmin_stcount=0
 
 def ReadFromFile(flname):
@@ -80,7 +81,7 @@ def mutateInd(individual, sudoku_board):
 
 
 def fitnesscalc(population, generation=0):
-	
+	start = time.perf_counter()
 	f=0
 	x=[]
 	fit=[]
@@ -170,6 +171,11 @@ def fitnesscalc(population, generation=0):
 			print("Soln Is: ")
 			board_print(sudoku_board)
 			print("Gen:", generation )
+
+			end = time.perf_counter()
+			final_time = end - start
+			print("Time Elapsed")
+			print(final_time)
 			sys.exit()
 		fit.append(fitness)
 	if Locmin_stcount==99:
