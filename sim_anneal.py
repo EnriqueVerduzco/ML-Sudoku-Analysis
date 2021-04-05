@@ -106,7 +106,7 @@ def main():
             #Tmin = Low Temperature
             sudoku.Tmax = .5
             sudoku.Tmin = .05
-            sudoku.steps = 10000
+            sudoku.steps = 50000
             sudoku.updates = 100
 
             print('\n')
@@ -147,7 +147,7 @@ def main():
     df1['Count of Solutions Found'] =duplicates['size']
 
     #save to csv with no index values, just columns of puzzles + times
-    df1.to_csv('./Sim_Anneal_CSVs/SudokuPuzzles.csv', index=False)
+    df1.to_csv('./Sim_Anneal_CSVs/SudokuPuzzles_100Trials_' + str(sudoku.steps) + '_Steps.csv', index=False)
 
 
 if __name__ == "__main__":
