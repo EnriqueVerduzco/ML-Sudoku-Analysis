@@ -1,11 +1,31 @@
 import sys
 import random
 import time
-import sudoku as s
 Locmin_stcount=0
-def rFF(x):
-	func = {"s1":s.s1(),"s2":s.s2(),"s3":s.s3(),"s4":s.s4(),"s5":s.s5(),"s6":s.s6(),"s7":s.s7(),"s8":s.s8(),"s9":s.s9(),"s10":s.s10(),"s11":s.s11(),"s12":s.s12(),"s13":s.s13(),"s14":s.s14(),"s15":s.s15(),"s16":s.s16(),"s17":s.s17(),"s18":s.s18(),"s19":s.s19(),"s20":s.s20(),"s21":s.s21(),"s22":s.s22(),"s23":s.s23(),"s24":s.s24(),"s25":s.s25(),"s26":s.s26(),"s27":s.s27(),"s28":s.s28(),"s29":s.s29(),"s30":s.s30()}
-	return func[x]
+
+def ReadFromFile(flname):
+	try:
+		f = open(flname,'r')
+		text = f.read()
+		sudoku_board = text.split('\n')
+		f.close()
+		L = []
+		for i in sudoku_board:
+			i = list(i)
+			L2 = []
+			if not (len(i) == 0 or i[0] == '*'):
+				for j in range(11):
+					if (i[j] != '|'):
+						if (i[j] != '-'):
+							L2.append(int(i[j]))
+						else:
+							L2.append(0)
+				L.append(list(L2))
+		return L
+	except:
+		print("Error in file reading")
+		sys.exit()	
+
 def popln_initialize(sudoku_board, popNumber):
 	return [indexAssign(sudoku_board) for _ in range(popNumber)]
 
@@ -58,8 +78,10 @@ def mutateInd(individual, sudoku_board):
 					individual[i][rand1], individual[i][rand2] = individual[i][rand2], individual[i][rand1]
 					flag = True
 	return list(individual)
+
+
 def fitnesscalc(population, generation=0):
-	
+	start = time.perf_counter()
 	f=0
 	x=[]
 	fit=[]
@@ -72,7 +94,7 @@ def fitnesscalc(population, generation=0):
 			for item in range(9):
 				if (L[item] in L[item+1:]) == False:
 					fitness += 1
-
+		
 		L = []              #Box wise fitness
 		for i in range(3):
 			for j in range(3):
@@ -141,7 +163,7 @@ def fitnesscalc(population, generation=0):
 			if fitness>f:
 				f=fitness
 				x=sudoku_board
-
+		
 		if (fitness == 162): # for final solution
 			print("")
 			print("Max current fitness:",fitness)
@@ -149,14 +171,17 @@ def fitnesscalc(population, generation=0):
 			print("Soln Is: ")
 			board_print(sudoku_board)
 			print("Gen:", generation )
-			D.stop()
+
+			end = time.perf_counter()
+			final_time = end - start
+			print("Time Elapsed")
+			print(final_time)
 			sys.exit()
-			
 		fit.append(fitness)
 	if Locmin_stcount==99:
 		print("Current Fitness:",f)
 		print("")
-		board_print(x)		
+		board_print(x)
 	return fit
 
 
@@ -164,55 +189,38 @@ def board_print(sudoku_board):
 	iteration = 0
 	print("\n")
 	for i in sudoku_board:
-
-		print(" ", i[0]," ", i[1]," ", i[2], " | ", i[3]," ", i[4]," ", i[5], " | ", i[6]," ", i[7]," ", i[8])
+		
+		print(" ", i[0]," ", i[1]," ", i[2], " Ξ ", i[3]," ", i[4]," ", i[5], " Ξ ", i[6]," ", i[7]," ", i[8])
 		iteration += 1
 		if (iteration == 3 or iteration == 6):
 			print("><><><><><><><><><><><><><><><><><><><><><")
 	print("\n")
-class TimerError(Exception):
-    """A custom exception used to report errors in use of Timer class"""
+	
 
-class Timer:
-    def __init__(self,startTime):
-        self.starTime = startTime
-   
-    def start(self):
-        self.startTime = time.perf_counter()
-
-    def stop(self):
-        if self.startTime is None:
-            raise TimerError(f"Timer is not running. Use .start() to start it")
-
-        elapsed_time = time.perf_counter() - self.startTime
-        self.startTime = None
-        print(f"Elapsed time = {elapsed_time :0.4f} seconds")
 if __name__ == "__main__":
-    K = input("Which board would you like? (format('s10')?")
-sudoku_board = rFF(K)
-print("Input Sudoku Board:")
-board_print(sudoku_board)
-D=Timer(None)
-D.start()
-zoo=True
-while zoo==True:
-	populn_num=200
-	iteration = 0
-	population = popln_initialize(sudoku_board, populn_num)
-	fitnessPop = fitnesscalc(population)
-	while (iteration < 1000):
-		iteration += 1
-		poplnparents = poplnselecn(population, fitnessPop, populn_num)
-		poplnchild = crossover(poplnparents, populn_num)
-		population = mutatePop(poplnchild, sudoku_board)
-		lastFitness = sorted(fitnessPop)[-1]
-		fitnessPop = fitnesscalc(population, iteration)
-		if (lastFitness == sorted(fitnessPop)[-1]):
-			Locmin_stcount += 1
-			if Locmin_stcount == 100:
-				print("Local Minima detected")
-				zoo==False
-				break
-		else:
-			Locmin_stcount = 0
-		print("Gen:", iteration, "& Max fit %.1f" % sorted(fitnessPop)[-1])
+		sudoku_board = ReadFromFile(sys.argv[1])
+		print("Input Sudoku Board:")
+		board_print(sudoku_board)
+		iter = 0
+		while iter == 0:
+			populn_num=200
+			iteration = 0
+			population = popln_initialize(sudoku_board, populn_num)
+			fitnessPop = fitnesscalc(population)
+			while (iteration < 1000):
+				iteration += 1
+				poplnparents = poplnselecn(population, fitnessPop, populn_num)
+				poplnchild = crossover(poplnparents, populn_num)
+				population = mutatePop(poplnchild, sudoku_board)
+				lastFitness = sorted(fitnessPop)[-1]
+				fitnessPop = fitnesscalc(population, iteration)
+				if (lastFitness == sorted(fitnessPop)[-1]):
+					Locmin_stcount += 1
+					if Locmin_stcount == 100:
+						print("Local Minima detected")	
+						iter=1
+						break
+				else:
+					Locmin_stcount = 0
+				print("Gen:", iteration, "& Max fit %.1f" % sorted(fitnessPop)[-1])
+			
