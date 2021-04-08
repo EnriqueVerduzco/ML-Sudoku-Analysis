@@ -309,6 +309,12 @@ sudoku30 = [[1,0,0,8,5,0,3,0,6],
 			[0,5,0,0,9,0,0,0,0],
 			[8,0,7,0,4,3,0,0,2]]
 
+sudoList_Non_NP = [sudoku1, sudoku2,sudoku3,sudoku4,sudoku5,sudoku6,sudoku7,
+					sudoku8,sudoku9,sudoku10,sudoku11,sudoku12,sudoku13,sudoku14,
+					sudoku15,sudoku16,sudoku17,sudoku18,sudoku19,sudoku20,
+					sudoku21,sudoku22,sudoku23,sudoku24,sudoku25,sudoku26,
+					sudoku27,sudoku28,sudoku29,sudoku30]
+
 s1=np.reshape(sudoku1,(9,9))
 s2=np.reshape(sudoku2,(9,9))
 s3=np.reshape(sudoku3,(9,9))
@@ -339,7 +345,8 @@ s27=np.reshape(sudoku27,(9,9))
 s28=np.reshape(sudoku28,(9,9))
 s29=np.reshape(sudoku29,(9,9))
 s30=np.reshape(sudoku30,(9,9))
-# print(1,"\n",s1)
+
+#print(1,"\n",s1)
 # print(2,"\n",s2)
 # print(3,"\n",s3)
 # print(4,"\n",s4)
@@ -370,6 +377,7 @@ s30=np.reshape(sudoku30,(9,9))
 # print(29,"\n",s29)
 # print(30,"\n",s30)
 
-#print("\n \n \n", sudoku1)
-sudoLst=[s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23,s24,s25,s26,s27,s28,s29,s30]
+sudoLst=[s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,
+		s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,
+		s21,s22,s23,s24,s25,s26,s27,s28,s29,s30]
 #print(sudoLst)
