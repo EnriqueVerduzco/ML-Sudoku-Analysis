@@ -309,17 +309,17 @@ sudoku30 = [[1,0,0,8,5,0,3,0,6],
 			[0,5,0,0,9,0,0,0,0],
 			[8,0,7,0,4,3,0,0,2]]
 
-
-#sudoList_Non_NP = []
-
-#for i in range(30):
-    #sudoList_Non_NP.append
     
 sudoList_Non_NP = [sudoku1, sudoku2,sudoku3,sudoku4,sudoku5,sudoku6,sudoku7,
 					sudoku8,sudoku9,sudoku10,sudoku11,sudoku12,sudoku13,sudoku14,
 					sudoku15,sudoku16,sudoku17,sudoku18,sudoku19,sudoku20,
 					sudoku21,sudoku22,sudoku23,sudoku24,sudoku25,sudoku26,
 					sudoku27,sudoku28,sudoku29,sudoku30]
+
+#create deepcopy of sudoku puzzles that can be modified and reset 
+copy_sudoku_lists = []
+for i in sudoList_Non_NP:
+    copy_sudoku_lists.append(copy.deepcopy(i))
 
 s1=np.reshape(sudoku1,(9,9))
 s2=np.reshape(sudoku2,(9,9))
