@@ -309,6 +309,12 @@ sudoku30 = [[1,0,0,8,5,0,3,0,6],
 			[0,5,0,0,9,0,0,0,0],
 			[8,0,7,0,4,3,0,0,2]]
 
+
+#sudoList_Non_NP = []
+
+#for i in range(30):
+    #sudoList_Non_NP.append
+    
 sudoList_Non_NP = [sudoku1, sudoku2,sudoku3,sudoku4,sudoku5,sudoku6,sudoku7,
 					sudoku8,sudoku9,sudoku10,sudoku11,sudoku12,sudoku13,sudoku14,
 					sudoku15,sudoku16,sudoku17,sudoku18,sudoku19,sudoku20,
