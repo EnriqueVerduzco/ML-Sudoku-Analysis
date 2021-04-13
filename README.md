@@ -10,3 +10,8 @@ Solution for a 9x9 sudoku game through 3 stratagies.
 3. Satisfiability
 
 Analysis of each solution to see which one is better.
+
+```
+To run the EA file, type in python ga.py
+Then it will ask for which board to run. Simply type the board name as "s1" for board1 and "s2" for board2 etc..
+```
