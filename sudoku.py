@@ -304,7 +304,54 @@ sudoku30 = [[1,0,0,8,5,0,3,0,6],
 			[0,5,0,0,9,0,0,0,0],
 			[8,0,7,0,4,3,0,0,2]]
 
-            
+sudoList_Non_NP = [sudoku1, sudoku2,sudoku3,sudoku4,sudoku5,sudoku6,sudoku7,
+					sudoku8,sudoku9,sudoku10,sudoku11,sudoku12,sudoku13,sudoku14,
+					sudoku15,sudoku16,sudoku17,sudoku18,sudoku19,sudoku20,
+					sudoku21,sudoku22,sudoku23,sudoku24,sudoku25,sudoku26,
+					sudoku27,sudoku28,sudoku29,sudoku30]
+
+
+#create deepcopy of sudoku puzzles that can be modified and reset 
+copy_sudoku_lists = []
+for i in sudoList_Non_NP:
+    copy_sudoku_lists.append(copy.deepcopy(i))
+
+s1=np.reshape(sudoku1,(9,9))
+s2=np.reshape(sudoku2,(9,9))
+s3=np.reshape(sudoku3,(9,9))
+s4=np.reshape(sudoku4,(9,9))
+s5=np.reshape(sudoku5,(9,9))
+s6=np.reshape(sudoku6,(9,9))
+s7=np.reshape(sudoku7,(9,9))
+s8=np.reshape(sudoku8,(9,9))
+s9=np.reshape(sudoku9,(9,9))
+s10=np.reshape(sudoku10,(9,9))
+s11=np.reshape(sudoku11,(9,9))
+s12=np.reshape(sudoku12,(9,9))
+s13=np.reshape(sudoku13,(9,9))
+s14=np.reshape(sudoku14,(9,9))
+s15=np.reshape(sudoku15,(9,9))
+s16=np.reshape(sudoku16,(9,9))
+s17=np.reshape(sudoku17,(9,9))
+s18=np.reshape(sudoku18,(9,9))
+s19=np.reshape(sudoku19,(9,9))
+s20=np.reshape(sudoku20,(9,9))
+s21=np.reshape(sudoku21,(9,9))
+s22=np.reshape(sudoku22,(9,9))
+s23=np.reshape(sudoku23,(9,9))
+s24=np.reshape(sudoku24,(9,9))
+s25=np.reshape(sudoku25,(9,9))
+s26=np.reshape(sudoku26,(9,9))
+s27=np.reshape(sudoku27,(9,9))
+s28=np.reshape(sudoku28,(9,9))
+s29=np.reshape(sudoku29,(9,9))
+s30=np.reshape(sudoku30,(9,9))
+
+
+sudoLst=[s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,
+		s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,
+		s21,s22,s23,s24,s25,s26,s27,s28,s29,s30]
+
 # def s1(): 
 #     sudoku1 = [[0,0,0,4,0,0,2,0,0],[7,0,8,5,2,6,0,9,0],[5,0,0,0,1,0,0,0,0],[2,3,5,0,0,0,0,0,1],[0,0,6,0,7,0,4,0,0],[4,0,0,0,0,0,6,3,9],[0,0,0,0,3,0,0,0,7],[0,6,0,1,5,2,9,0,4],[0,0,4,0,0,8,0,0,0]]
 #     return sudoku1
@@ -396,42 +443,3 @@ sudoku30 = [[1,0,0,8,5,0,3,0,6],
 #     sudoku30 = [[1,0,0,8,5,0,3,0,6],[0,0,0,0,6,0,0,8,0],[5,0,8,0,0,4,0,0,9],[0,0,0,3,0,0,0,0,1],[0,9,1,0,0,0,2,7,0],[3,0,0,0,0,2,0,0,0],[9,0,0,6,0,0,1,0,7],[0,5,0,0,9,0,0,0,0],[8,0,7,0,4,3,0,0,2]]
 #     return sudoku30
 
-sudoList_Non_NP = [sudoku1, sudoku2,sudoku3,sudoku4,sudoku5,sudoku6,sudoku7,
-					sudoku8,sudoku9,sudoku10,sudoku11,sudoku12,sudoku13,sudoku14,
-					sudoku15,sudoku16,sudoku17,sudoku18,sudoku19,sudoku20,
-					sudoku21,sudoku22,sudoku23,sudoku24,sudoku25,sudoku26,
-					sudoku27,sudoku28,sudoku29,sudoku30]
-					
-#print(1,"\n",s1)
-#print(2,"\n",s2)
-#print(3,"\n",s3)
-#print(4,"\n",s4)
-#print(5,"\n",s5)
-#print(6,"\n",s6)
-#print(7,"\n",s7)
-#print(8,"\n",s8)
-#print(9,"\n",s9)
-#print(10,"\n",s10)
-#print(11,"\n",s11)
-#print(12,"\n",s12)
-#print(13,"\n",s13)
-#print(14,"\n",s14)
-#print(15,"\n",s15)
-#print(16,"\n",s16)
-#print(17,"\n",s17)
-#print(18,"\n",s18)
-#print(19,"\n",s19)
-#print(20,"\n",s20)
-#print(21,"\n",s21)
-#print(22,"\n",s22)
-#print(23,"\n",s23)
-#print(24,"\n",s24)
-#print(25,"\n",s25)
-#print(26,"\n",s26)
-#print(27,"\n",s27)
-#print(28,"\n",s28)
-#print(29,"\n",s29)
-#print(30,"\n",s30)
-
-
-#class population(object):
