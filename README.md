@@ -3,13 +3,6 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Sudoku_Puzzle_%28Tourmaline%29R2.png" style="max-width:100%;" width="50%" height="50%">
 </a>
 </p>
-
-<h1 align="center">
-<a>
-ML-Sudoku-Analysis
-</a>
- </h1>
- 
  <p align="center">
   <a href = "https://github.com/EnriqueVerduzco/ML-Sudoku-Analysis">
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Sudoku_Puzzle_%28Tourmaline%29R2.png" alt="Logo" width="280" height="280" style="max-width:100%;">
