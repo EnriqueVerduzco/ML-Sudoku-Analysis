@@ -37,12 +37,13 @@ Analysis of each solution to see which one is better.
 </p>
 <h2><a id="user-content-built-with" class="anchor" aria-hidden="true" href="#built-with"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Built With</h2>
 <ul>
-<li>Python3<a href="/NavSanya/AsthmaTravels/blob/main"></a></li>
-<li>GitHub<a href="/NavSanya/AsthmaTravels/blob/main"></a></li>
+<li>Python3</li>
+<li>GitHub</li>
+<li>Jupyter Notebook</li>
 </ul>
 
 <h2><a id="user-content-license" class="anchor" aria-hidden="true" href="#license"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>License</h2>
-<p>None</p>
+<p><a href="https://github.com/EnriqueVerduzco/ML-Sudoku-Analysis/blob/main/LICENSE">MIT License </a></p>
 
 <h2><a id="user-content-contributions" class="anchor" aria-hidden="true" href="#contributions"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Contributions</h2>
 <p>Enrique Verduzco:</p>
@@ -76,11 +77,11 @@ Analysis of each solution to see which one is better.
 <p>Ryan Perez - (<a href="mailto:0533484@mail.fresnostate.edu">0533484@mail.fresnostate.edu</a>) - email</p>
 <h2><a id="user-content-links" class="anchor" aria-hidden="true" href="#links"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Links</h2>
 <p>Project Link: <a href="https://github.com/EnriqueVerduzco/ML-Sudoku-Analysis">ML Sudoku Analysis Github</a><br>
-Report: <a href="/linkhere"></a>
+Report: <a href="https://docs.google.com/document/d/1i9WQxdtDD1lvCH_Gp7HQim9jlwyP6yYX1RUfUr4QiD0/edit?usp=sharing">Analysis Report</a><br>
 Presentation: <a href="https://docs.google.com/presentation/d/138cvQsas1rP0Ahf8ZI-60fEg3JNAF0UINwwC9SCGBhY/edit?usp=sharing" rel="nofollow">ML Sudoku Analysis Presentation</a></p>
 
 <h2><a id="user-content-acknowledgements" class="anchor" aria-hidden="true" href="#acknowledgements"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Acknowledgements</h2>
 <ul>
-<li>California State University Fresno, Computer Science Department <a href="/NavSanya/AsthmaTravels/blob/main">http://www.fresnostate.edu/csm/csci/</a></li>
-<li>Dr. Athanasios Aris (Thanos) Panagopoulos <a href="/NavSanya/AsthmaTravels/blob/main">http://www.apanagopoulos.com/</a></li>
+<li>California State University Fresno, Computer Science Department http://www.fresnostate.edu/csm/csci/</a></li>
+<li>Dr. Athanasios Aris (Thanos) Panagopoulos http://www.apanagopoulos.com/</a></li>
 </ul>
