@@ -1,3 +1,9 @@
+#This program performs evolutionary algorithm in order to solve a sudoku board
+#The population number is fixed to 200 
+#Once a sudoku board is chosen to solve for, a population of 200 random generated sudoku boards are produced
+#Crossovers and mutations are executed between the sudoku boards during each generation
+#The fitness value will then be calculated after each generation and search for a completed sudoku board solution
+
 import sys
 import random
 import time
@@ -7,6 +13,7 @@ import winsound
 Locmin_stcount = 0
 
 
+#Initializes all the sudoku boards made inside sudoku.py 
 def rFF(x):
     func = {"s1": s.s1(), "s2": s.s2(), "s3": s.s3(), "s4": s.s4(), "s5": s.s5(),
     "s6": s.s6(), "s7": s.s7(), "s8": s.s8(), "s9": s.s9(), "s10": s.s10(), "s11": s.s11(),
@@ -16,11 +23,11 @@ def rFF(x):
     "s30": s.s30()}
     return func[x]
 
-
+#Initialize population 
 def popln_initialize(sudoku_board, popNumber):
     return [indexAssign(sudoku_board) for _ in range(popNumber)]
 
-
+#Sets random values to cells containing '0' in the sudoku board
 def indexAssign(sudoku_board):
     L = []
     for i in range(9):
@@ -39,13 +46,13 @@ def indexAssign(sudoku_board):
                         integerset.remove(pickedInt)
     return L
 
-
+#Selects the parents of the population 
 def poplnselecn(population, fitness_population, populn_num):
     sortedPopulation = sorted(
         zip(population, fitness_population), key=lambda ind_fit: ind_fit[1])
     return [individual for individual, fitness in sortedPopulation[int(populn_num * 0.2):]]
 
-
+#Performs crossover for each generation of parents
 def crossover(population, populn_num):
     a = []
     for i in range(populn_num):
@@ -59,7 +66,7 @@ def crossoverInd(individual1, individual2):
         a.append(list(random.choice(ch_pair)))
     return a
 
-
+#Mutates population
 def mutatePop(population, sudoku_board):
     return [mutateInd(individual, sudoku_board) for individual in population]
 
@@ -76,7 +83,7 @@ def mutateInd(individual, sudoku_board):
                     flag = True
     return list(individual)
 
-
+#Calculates fitness value of a population
 def fitnesscalc(population, generation=0):
 
     f = 0
@@ -182,7 +189,7 @@ def fitnesscalc(population, generation=0):
         board_print(x)		
     return fit
 
-
+#Prints out sudoku board
 def board_print(sudoku_board):
     iteration = 0
     print("\n")
@@ -225,13 +232,13 @@ while zoo==True:
     population = popln_initialize(sudoku_board, populn_num)
     fitnessPop = fitnesscalc(population)
     resets += 1
-    while (iteration < 1000):
+    while (iteration < 1000):  #Limit to 1000 generations
         iteration += 1
-        poplnparents = poplnselecn(population, fitnessPop, populn_num)
-        poplnchild = crossover(poplnparents, populn_num)
-        population = mutatePop(poplnchild, sudoku_board)
-        lastFitness = sorted(fitnessPop)[-1]
-        fitnessPop = fitnesscalc(population, iteration)
+        poplnparents = poplnselecn(population, fitnessPop, populn_num) #Selects parents
+        poplnchild = crossover(poplnparents, populn_num) #Produces offspring after crossover. Offspring becomes next population
+        population = mutatePop(poplnchild, sudoku_board) #Mutate the population
+        lastFitness = sorted(fitnessPop)[-1] #Keeps track of last fitness value
+        fitnessPop = fitnesscalc(population, iteration) #Keeps track of fitness value for each population
         if (lastFitness == sorted(fitnessPop)[-1]):
             Locmin_stcount += 1
             if Locmin_stcount == 100:
